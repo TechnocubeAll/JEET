@@ -1,0 +1,178 @@
+<form [formGroup]="familyInformationForm" (ngSubmit)="submitForm()">
+  <div class="form-A p-20">
+    <div class="div-title mb-10">
+      Form A - Basic Details
+    </div>
+    <div class="row">
+      <div class="col-md-6 left">
+        <div class="form-group">
+          <label class="label-text" for="father-name">Parents Name</label>
+          <input type="text" formControlName="name" class="form-control" id="father-name"
+            placeholder="Enter father name">
+        </div>
+        <div class="row city-pincode">
+          <div class="col-md-6 left">
+            <div class="form-group">
+              <label class="label-text" for="city">City</label>
+              <input type="text" formControlName="city" class="form-control" id="city" placeholder="Enter city">
+            </div>
+          </div>
+          <div class="col-md-6 right">
+            <div class="form-group">
+              <label class="label-text" for="father-name">Pincode</label>
+              <input type="number" formControlName="pincode" class="form-control" id="pincode"
+                placeholder="Enter pincode" appNumberOnly>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 right">
+        <div class="form-group">
+          <label class="label-text" for="address">Address</label>
+          <textarea rows="5" formControlName="address" class="form-control" id="address"
+            placeholder="Enter address"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-20">
+      <div class="col-md-6 left">
+        <div class="row">
+          <div class="col-md-6 left">
+            <div class="form-group">
+              <label class="label-text">Panth</label>
+              <select formControlName="panth" class="form-control">
+                <option *ngFor="let panth of panths">{{ panth }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 right">
+            <div class="form-group">
+              <label class="label-text">Caste</label>
+              <select formControlName="caste" class="form-control">
+                <option *ngFor="let caste of castes">{{ caste }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 right">
+        <div class="row col-md-4-classes">
+          <div class="col-md-4 left">
+            <div class="form-group">
+              <label class="label-text" for="father-name">Taluka</label>
+              <input type="text" formControlName="taluka" class="form-control" id="taluka" placeholder="Enter Taluka">
+            </div>
+          </div>
+          <div class="col-md-4 middle">
+            <div class="form-group">
+              <label class="label-text" for="father-name">District</label>
+              <input type="text" formControlName="district" class="form-control" id="district"
+                placeholder="Enter district">
+            </div>
+          </div>
+          <div class="col-md-4 right">
+            <div class="form-group">
+              <label class="label-text" for="father-name">State</label>
+              <input type="text" formControlName="state" class="form-control" id="state" placeholder="Enter state">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-B p-20">
+    <div class="div-title mb-10">
+      Form B - Accommodation information
+    </div>
+    <div class="row col-md-4-classes">
+      <div class="col-md-4 left">
+        <div class="form-group">
+          <label class="label-text" for="residence-type">Residentail Building Own</label>
+          <select formControlName="residenceType" class="form-control">
+            <option *ngFor="let residenceType of residenceTypes">{{ residenceType }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4 middle">
+        <div class="form-group">
+          <label class="label-text" for="feet">Square feet of House</label>
+          <input type="number" formControlName="feet" class="form-control" id="feet" placeholder="Enter Square Feet">
+        </div>
+      </div>
+      <div class="col-md-4 right">
+        <div class="form-group">
+          <label class="label-text" for="maintenance">Maintenance of House</label>
+          <input type="number" formControlName="maintenance" class="form-control" id="maintenance"
+            placeholder="Enter Maintenance">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-C p-20">
+    <div class="div-title mb-10">
+      Form C - Family Details
+    </div>
+    <div formArrayName="members">
+      <ng-container *ngFor="let member of Members.controls; let i = index" [formGroupName]="i">
+        <div [ngClass]="{'mt-10': i != 0}" class="container-title mb-10">Member {{ i+1 }}</div>
+        <div class="member p-20 border-1">
+          <div class="row col-md-3-classes">
+            <div class="col-md-3 left">
+              <div class="form-group">
+                <label class="label-text" for="member{{ i }}-name">Name</label>
+                <input type="text" formControlName="memberName" class="form-control" id="member{{ i }}-name"
+                  placeholder="Enter Name">
+              </div>
+            </div>
+            <div class="col-md-3 middle-left">
+              <div class="form-group">
+                <label class="label-text" for="member{{ i }}-dob">Date of Birth</label>
+                <input type="date" formControlName="memberDOB" class="form-control" id="member{{ i }}-dob"
+                  placeholder="DD/MM/YYYY">
+              </div>
+            </div>
+            <div class="col-md-3 middle-right">
+              <div class="form-group">
+                <label class="label-text" for="member{{ i }}-relation">Relation with Parent</label>
+                <input type="text" formControlName="memberRelation" class="form-control" id="member{{ i }}-relation"
+                  placeholder="Enter Relation">
+              </div>
+            </div>
+            <div class="col-md-3 right">
+              <div class="form-group">
+                <label class="label-text" for="member{{ i }}-education">Education</label>
+                <input type="text" formControlName="memberEducation" class="form-control" id="member{{ i }}-education"
+                  placeholder="Enter Education">
+              </div>
+            </div>
+          </div>
+          <div class="row col-md-4-classes mt-20">
+            <div class="col-md-4 left">
+              <div class="form-group">
+                <label class="label-text" for="member{{ i }}-contact">Contact Number</label>
+                <input type="number" formControlName="memberContact" class="form-control" id="member{{ i }}-contact"
+                  placeholder="Enter Contact Number">
+              </div>
+            </div>
+            <div class="col-md-4 middle">
+              <div class="form-group">
+                <label class="label-text" for="member{{ i }}-bill">Monthly Bill Amount</label>
+                <input type="text" formControlName="memberBill" class="form-control" id="member{{ i }}-bill"
+                  placeholder="Enter Bill Amount">
+              </div>
+            </div>
+            <div class="col-md-4 right">
+              <div class="form-group">
+                <label class="label-text" for="member1-email">Email</label>
+                <input type="text" formControlName="memberEmail" class="form-control" id="member1-email"
+                  placeholder="Enter Email">
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <button class="btn btn-primary mt-20" (click)="addMember()">Add Member</button>
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!familyInformationForm.valid">Submit</button>
+</form>
